@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,30 +9,34 @@ public enum MyEnumeratedType
 
 public class SrtingSprite : MonoBehaviour
 {
+
+    // public
     public MyEnumeratedType formate;
     public string txt;
+    public int layer;
+    public float lettersDistancing = 0.5f;
+
+    // private
     Transform mainSprite;
     float posX;
-    public float lettersDistancing = 0.5f;
     int lastIndex = 0;
     public char [] character;
     public Sprite [] sprite;
     int maxTyped = 0;
+
     
-    // Start is called before the first frame update
     void Start()
     {
         posX = transform.position.x; 
         mainSprite = GameObject.Find("New Sprite").transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(txt.Length > maxTyped){
             maxTyped = txt.Length;
         }
-        //sprite.Length = character.Length;
+        
         for(int i = lastIndex; i < txt.Length; i++){
             Transform newSprite = Instantiate(mainSprite, new Vector2(0, 0), Quaternion.identity);
             newSprite.name = i.ToString();
@@ -46,6 +50,7 @@ public class SrtingSprite : MonoBehaviour
                 if(txt[i] == character[j]){
                     SpriteRenderer newSprite = GameObject.Find((i).ToString()).GetComponent<SpriteRenderer>();
                     newSprite.sprite = sprite[j];
+                    newSprite.sortingOrder = layer;
                 }
             }
         }
