@@ -7,7 +7,7 @@ public enum MyEnumeratedType
     firstIsBased, Centered
 }
 
-public class StringSprite : MonoBehaviour
+public class ImageToString : MonoBehaviour
 {
     // public
     public MyEnumeratedType formate;
